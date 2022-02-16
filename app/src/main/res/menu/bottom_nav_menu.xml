@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/slc_nav_news"
+        android:title="@string/title_news" />
+
+    <item
+        android:id="@+id/navigation_lokasi_vaksin"
+        android:icon="@drawable/slc_nav_location"
+        android:title="@string/title_lokasi_vaksin" />
+
+    <item
+        android:id="@+id/navigation_bookmark"
+        android:icon="@drawable/slc_nav_bookmark"
+        android:title="@string/title_bookmark" />
+</menu>

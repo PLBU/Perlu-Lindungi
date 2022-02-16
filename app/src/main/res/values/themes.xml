@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.PerluLindungi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/blue</item>
+    </style>
+
+    <!-- Text Styles -->
+    <style name="text_heading_1">
+        <item name="android:fontFamily">@font/oxygen</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:lineHeight">40dp</item>
+    </style>
+    <style name="text_heading_2">
+        <item name="android:fontFamily">@font/oxygen</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:lineHeight">30dp</item>
+    </style>
+    <style name="text_heading_3">
+        <item name="android:fontFamily">@font/oxygen</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:lineHeight">20dp</item>
+    </style>
+    <style name="text_normal">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+
+    <!--  Splash Screen  -->
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash_screen</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/blue</item>
+    </style>
+</resources>
