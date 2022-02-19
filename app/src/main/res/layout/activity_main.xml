@@ -29,4 +29,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/scan_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_news_filled"
+        android:contentDescription="Scan QR Code"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/blue"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
