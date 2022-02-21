@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.scan.ScanActivity">
 
+    <androidx.camera.view.PreviewView
+        android:id="@+id/scan_preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/scan_back_btn"
         android:layout_width="wrap_content"
