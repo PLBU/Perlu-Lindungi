@@ -4,6 +4,7 @@
     <string name="title_news">News</string>
     <string name="title_lokasi_vaksin">Lokasi Vaksin</string>
 
+    <string name="scan_btn_desc">Scan QR Code</string>
     <string name="scan_back">Back</string>
     <string name="scan_title">Scan</string>
 </resources>

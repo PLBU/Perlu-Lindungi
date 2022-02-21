@@ -35,10 +35,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_news_filled"
-        android:contentDescription="Scan QR Code"
+        android:src="@drawable/ic_qrcode_filled"
+        android:contentDescription="@string/scan_btn_desc"
         android:layout_marginBottom="72dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/blue"/>
+        android:backgroundTint="@color/blue"
+        app:tint="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
