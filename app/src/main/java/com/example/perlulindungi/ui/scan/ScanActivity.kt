@@ -1,11 +1,20 @@
 package com.example.perlulindungi.ui.scan
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.perlulindungi.R
+import com.example.perlulindungi.data.qrcode.CheckInRepo
+import com.example.perlulindungi.data.qrcode.QrCodeModel
 import com.example.perlulindungi.databinding.ActivityScanBinding
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
@@ -16,31 +25,28 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import java.util.*
 
-
-//import me.dm7.barcodescanner.zxing.ZXingScannerView
-
-
-//class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
-class ScanActivity : AppCompatActivity() {
+class ScanActivity : AppCompatActivity(), LocationListener  {
     private lateinit var scanBinding: ActivityScanBinding
     private lateinit var barcodeView: DecoratedBarcodeView
     private lateinit var lastText: String
     private lateinit var beepManager: BeepManager
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+
+    private lateinit var scanViewModel: ScanViewModel
 
     private val callback: BarcodeCallback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult) {
             Log.d("RESULT", result.text)
-            if (result.text == null || result.text == lastText) {
+            if (result.text == null || (result.text == lastText)) {
+                if (result.text == null) lastText = ""
                 // Prevent duplicate scans
                 return
             }
             lastText = result.text
-            barcodeView.setStatusText(result.text)
             beepManager.playBeepSoundAndVibrate()
 
-//            //Added preview of scanned barcode
-//            val imageView = findViewById(R.id.barcodePreview)
-//            imageView.setImageBitmap(result.getBitmapWithResultPoints(Color.YELLOW))
+            checkIn()
         }
 
         override fun possibleResultPoints(resultPoints: List<ResultPoint>) {}
@@ -53,7 +59,7 @@ class ScanActivity : AppCompatActivity() {
 
         lastText = ""
 
-        val intent: Intent = Intent("com.google.zxing.client.android.SCAN")
+        val intent = Intent("com.google.zxing.client.android.SCAN")
         intent.putExtra("PROMPT_MESSAGE", "")
 
         barcodeView = scanBinding.scanBarcodeView
@@ -66,6 +72,8 @@ class ScanActivity : AppCompatActivity() {
         scanBinding.scanBackBtn.setOnClickListener { onBackPressed() }
 
         beepManager = BeepManager(this)
+
+        getLocation()
     }
 
     override fun onResume() {
@@ -76,5 +84,68 @@ class ScanActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         barcodeView.pause()
+    }
+
+    private fun getLocation() {
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSION_REQUEST_ACCESS_FINE_LOCATION)
+            return
+        }
+        locationManager!!.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, this)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_ACCESS_FINE_LOCATION) {
+            when (grantResults[0]) {
+                PackageManager.PERMISSION_GRANTED -> getLocation()
+                PackageManager.PERMISSION_DENIED -> Log.e("LOCATION PERMISSION", "Not Granted")
+            }
+        }
+    }
+
+    companion object {
+        private const val PERMISSION_REQUEST_ACCESS_FINE_LOCATION = 100
+    }
+
+    override fun onLocationChanged(location: Location) {
+        latitude = location.latitude
+        longitude = location.longitude
+    }
+
+    fun setCheckInStatus(color: Int, text: String, icon: Int, reason: String?) {
+        scanBinding.scanResultImg.setImageResource(icon)
+        scanBinding.scanResultImgContainer.backgroundTintList = ContextCompat.getColorStateList(applicationContext, color)
+        scanBinding.scanSuccess.text = text
+        scanBinding.scanReason.text = reason
+    }
+
+    fun checkIn() {
+        var data = QrCodeModel(lastText, latitude, longitude)
+
+        var repo = CheckInRepo(data)
+
+        scanViewModel = ScanViewModel(repo)
+        scanViewModel.checkIn()
+        scanViewModel.checkInResult.observe(this, androidx.lifecycle.Observer { response ->
+            if (response == null) return@Observer
+
+            scanBinding.scanResultContainer.visibility = View.VISIBLE
+
+            Log.d("USER STATUS", response.getData().getUserStatus())
+            when (response.getData().getUserStatus()) {
+                "green" -> setCheckInStatus(R.color.green, "Berhasil", R.drawable.ic_checkmark, null)
+                "yellow" -> setCheckInStatus(R.color.green, "Berhasil", R.drawable.ic_checkmark,null)
+                "red" -> setCheckInStatus(R.color.red, "Gagal", R.drawable.ic_cross, response.getData().getReason())
+                "black" -> setCheckInStatus(R.color.red, "Gagal", R.drawable.ic_cross, response.getData().getReason())
+            }
+
+        })
     }
 }

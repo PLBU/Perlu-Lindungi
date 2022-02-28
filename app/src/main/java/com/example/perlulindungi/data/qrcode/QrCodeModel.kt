@@ -2,19 +2,25 @@ package com.example.perlulindungi.data.qrcode
 
 import com.google.gson.annotations.SerializedName
 
-class QrCodeModel {
+class QrCodeModel(
     @SerializedName("qrCode")
-    private lateinit var qrCode: String
+    private var qrCode: String,
 
     @SerializedName("latitude")
-    private var latitude: Double = 0.0
+    private var latitude: Double = 0.0,
 
     @SerializedName("longitude")
     private var longitude: Double = 0.0
+) {
+    fun getQrCode() : String {
+        return qrCode
+    }
 
-    fun QrCodeModel(qrCode: String, latitude: Double, longitude: Double) {
-        this.qrCode = qrCode
-        this.latitude = latitude
-        this.longitude = longitude
+    fun getLatitude(): Double {
+        return latitude
+    }
+
+    fun getLongitude(): Double {
+        return longitude
     }
 }

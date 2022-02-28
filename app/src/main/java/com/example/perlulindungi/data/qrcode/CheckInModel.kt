@@ -2,15 +2,17 @@ package com.example.perlulindungi.data.qrcode
 
 import com.google.gson.annotations.SerializedName
 
-class CheckInModel {
+class CheckInModel(
     @SerializedName("userStatus")
-    private lateinit var userStatus: String
-
+    private var userStatus: String,
     @SerializedName("reason")
-    private lateinit var reason: String
+    private var reason: String
+) {
+    fun getUserStatus() : String {
+        return userStatus
+    }
 
-    fun CheckInModel(userStatus: String, reason: String) {
-        this.userStatus = userStatus
-        this.reason = reason
+    fun getReason() : String {
+        return reason
     }
 }

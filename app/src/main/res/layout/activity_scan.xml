@@ -10,9 +10,11 @@
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/scan_barcode_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/scan_back_btn"
@@ -65,52 +67,68 @@
         android:textSize="24sp"
         android:textColor="@color/black"/>
 
-    <LinearLayout
-        android:id="@+id/scan_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="74dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="44dp"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="73dp"
-            android:layout_height="73dp"
-            android:background="@drawable/shape_circle"
-            android:backgroundTint="@color/red">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_cross" />
-        </RelativeLayout>
+        android:background="@color/white">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/scan_result_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="74dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="44dp"
+            android:visibility="gone">
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/scan_result_img_container"
+                android:layout_width="73dp"
+                android:layout_height="73dp"
+                android:background="@drawable/shape_circle"
+                android:backgroundTint="@color/red">
+
+                <ImageView
+                    android:id="@+id/scan_result_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_cross" />
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="Gagal"
-                android:layout_gravity="center"
-                android:textColor="@color/black"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Belum Vaksin"
-                android:layout_gravity="center"
-                android:textColor="@color/black"/>
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/scan_success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/oxygen"
+                    android:textFontWeight="800"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/scan_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="12sp"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/poppins"
+                    android:textFontWeight="400"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
