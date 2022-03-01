@@ -1,8 +1,13 @@
 package com.example.perlulindungi.ui.scan
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -23,9 +28,8 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
-import java.util.*
 
-class ScanActivity : AppCompatActivity(), LocationListener  {
+class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener  {
     private lateinit var scanBinding: ActivityScanBinding
     private lateinit var barcodeView: DecoratedBarcodeView
     private lateinit var lastText: String
@@ -34,6 +38,9 @@ class ScanActivity : AppCompatActivity(), LocationListener  {
     private var longitude: Double = 0.0
 
     private lateinit var scanViewModel: ScanViewModel
+
+    private lateinit var sensorManager: SensorManager
+    private var temperature: Sensor? = null
 
     private val callback: BarcodeCallback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult) {
@@ -74,16 +81,24 @@ class ScanActivity : AppCompatActivity(), LocationListener  {
         beepManager = BeepManager(this)
 
         getLocation()
+
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        temperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+        if (temperature == null) Log.d("TEMPERATURE SENSOR", "NOT AVAILABLE")
     }
 
     override fun onResume() {
         super.onResume()
         barcodeView.resume()
+
+        sensorManager.registerListener(this, temperature, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     override fun onPause() {
         super.onPause()
         barcodeView.pause()
+
+        sensorManager.unregisterListener(this)
     }
 
     private fun getLocation() {
@@ -119,7 +134,7 @@ class ScanActivity : AppCompatActivity(), LocationListener  {
         longitude = location.longitude
     }
 
-    fun setCheckInStatus(color: Int, text: String, icon: Int, reason: String?) {
+    private fun setCheckInStatus(color: Int, text: String, icon: Int, reason: String?) {
         scanBinding.scanResultImg.setImageResource(icon)
         scanBinding.scanResultImgContainer.backgroundTintList = ContextCompat.getColorStateList(applicationContext, color)
         scanBinding.scanSuccess.text = text
@@ -127,9 +142,9 @@ class ScanActivity : AppCompatActivity(), LocationListener  {
     }
 
     fun checkIn() {
-        var data = QrCodeModel(lastText, latitude, longitude)
+        val data = QrCodeModel(lastText, latitude, longitude)
 
-        var repo = CheckInRepo(data)
+        val repo = CheckInRepo(data)
 
         scanViewModel = ScanViewModel(repo)
         scanViewModel.checkIn()
@@ -147,5 +162,17 @@ class ScanActivity : AppCompatActivity(), LocationListener  {
             }
 
         })
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+
+    }
+
+    override fun onSensorChanged(event: SensorEvent) {
+        val temperature = event.values[0]
+
+        Log.d("TEMPERATURE", temperature.toString())
+
+        scanBinding.scanTemp.text = temperature.toString()
     }
 }
