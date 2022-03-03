@@ -41,11 +41,13 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
 
     private lateinit var sensorManager: SensorManager
     private var temperature: Sensor? = null
+    private var isScanning = false;
+    private var isSuccess = false;
 
     private val callback: BarcodeCallback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult) {
             Log.d("RESULT", result.text)
-            if (result.text == null || (result.text == lastText)) {
+            if (result.text == null || (result.text == lastText && isSuccess) || isScanning) {
                 if (result.text == null) lastText = ""
                 // Prevent duplicate scans
                 return
@@ -142,6 +144,7 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
     }
 
     fun checkIn() {
+        isScanning = true;
         val data = QrCodeModel(lastText, latitude, longitude)
 
         val repo = CheckInRepo(data)
@@ -149,7 +152,10 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
         scanViewModel = ScanViewModel(repo)
         scanViewModel.checkIn()
         scanViewModel.checkInResult.observe(this, androidx.lifecycle.Observer { response ->
+            isScanning = false;
+            isSuccess = false;
             if (response == null) return@Observer
+            isSuccess = true;
 
             scanBinding.scanResultContainer.visibility = View.VISIBLE
 
