@@ -15,7 +15,14 @@
         android:id="@+id/navigation_news"
         android:name="com.example.perlulindungi.ui.news.NewsFragment"
         android:label="@string/title_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_news_web_view"
+        android:name="com.example.perlulindungi.ui.news.NewsWebViewFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news_web_view" />
 
     <fragment
         android:id="@+id/navigation_lokasi_vaksin"
