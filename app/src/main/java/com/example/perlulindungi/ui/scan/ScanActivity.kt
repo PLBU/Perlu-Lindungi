@@ -86,7 +86,11 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         temperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
-        if (temperature == null) Log.d("TEMPERATURE SENSOR", "NOT AVAILABLE")
+        if (temperature == null) {
+            Log.d("TEMPERATURE SENSOR", "NOT AVAILABLE")
+
+            scanBinding.scanTemp.text = "N/A"
+        }
     }
 
     override fun onResume() {
@@ -179,6 +183,6 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
 
         Log.d("TEMPERATURE", temperature.toString())
 
-        scanBinding.scanTemp.text = temperature.toString()
+        scanBinding.scanTemp.text = "$temperature°C"
     }
 }
