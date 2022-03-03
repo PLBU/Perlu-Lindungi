@@ -1,37 +1,51 @@
 package com.example.perlulindungi.ui.news
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.perlulindungi.databinding.FragmentNewsBinding
 
 class NewsFragment : Fragment() {
 
     private var _binding: FragmentNewsBinding? = null
+    private var _newsAdapter: NewsAdapter? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private val newsAdapter get() = _newsAdapter!!
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this)[NewsViewModel::class.java]
-
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _newsAdapter = NewsAdapter()
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val newsViewModel =
+            ViewModelProvider(this)[NewsViewModel::class.java]
+        val root: View = binding.root
+        val recyclerView: RecyclerView = binding.recyclerView
+
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.adapter = newsAdapter
+
+        newsViewModel.getAllNews()
+        newsViewModel.allNewsData?.observe(viewLifecycleOwner) {
+            if (it != null) {
+                newsAdapter.setNewsList(it)
+                newsAdapter.notifyDataSetChanged()
+            }
         }
+
         return root
     }
 

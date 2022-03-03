@@ -7,4 +7,5 @@
     <string name="scan_btn_desc">Scan QR Code</string>
     <string name="scan_back">Back</string>
     <string name="scan_title">Scan</string>
+    <string name="heading_news">News COVID 19</string>
 </resources>
