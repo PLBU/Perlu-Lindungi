@@ -1,6 +1,7 @@
 package com.example.perlulindungi.ui.lokasi_vaksin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +30,10 @@ class LokasiVaksinFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        notificationsViewModel.faskes.observe(viewLifecycleOwner) {
+            println("INI IT\n")
+            println(it)
+            textView.text = it[0].getNama()
         }
         return root
     }

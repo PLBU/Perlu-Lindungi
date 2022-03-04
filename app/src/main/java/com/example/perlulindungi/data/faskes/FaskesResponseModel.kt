@@ -13,7 +13,7 @@ class FaskesResponseModel (
     private var message: String,
 
     @SerializedName("data")
-    private var data: FaskesModel
+    private var data: Array<FaskesModel>
 ) {
     fun getCode() : Int {
         return code
@@ -27,7 +27,7 @@ class FaskesResponseModel (
         return success
     }
 
-    fun getData() : FaskesModel {
+    fun getData() : Array<FaskesModel> {
         return data
     }
 }
