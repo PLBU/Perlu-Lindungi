@@ -10,15 +10,14 @@ import retrofit2.Response
 import retrofit2.create
 
 class FaskesRepo(
-    private val province: String = "JAWA BARAT",
-    private val city: String = "KOTA BANDUNG"
+    private var province: String = "JAWA BARAT",
+    private var city: String = "KOTA BANDUNG"
 ) {
 
-    fun getFaskes(): MutableLiveData<List<FaskesModel>>{
-//        println("PROVINCE")
-//        println(province)
-//        println("CITY")
-//        println(city)
+    fun getFaskes(_province: String?, _city: String?): MutableLiveData<List<FaskesModel>>{
+        province = if (_province == null) province else _province
+        city = if (_city == null) city else _city
+
         var result: MutableLiveData<List<FaskesModel>> = MutableLiveData()
 
         var faskesAPI: FaskesApi = RetrofitClient().getRetrofitClient()!!.create()

@@ -4,16 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
     tools:context=".ui.lokasi_vaksin.LokasiVaksinFragment">
+
+    <TextView
+        android:id="@+id/tv_titleCariVaksin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cari Faskes"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_pilihProvinsi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pilihProvinsi" />
+
+    <TextView
+        android:id="@+id/tv_pilihProvinsi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pilih Provinsi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titleCariVaksin" />
+
+    <TextView
+        android:id="@+id/tv_pilihKota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pilih Kota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_pilihProvinsi" />
+
+    <Spinner
+        android:id="@+id/spinner_pilihKota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pilihKota" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_pilihKota" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lokasiVaksin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_search">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

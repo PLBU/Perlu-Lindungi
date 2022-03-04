@@ -10,8 +10,8 @@ import retrofit2.Response
 import retrofit2.create
 
 class ProvinceRepo () {
-    fun getProvinces(): MutableLiveData<ProvinceResponseModel> {
-        var result: MutableLiveData<ProvinceResponseModel> = MutableLiveData()
+    fun getProvinces(): MutableLiveData<List<ProvinceModel>> {
+        var result: MutableLiveData<List<ProvinceModel>> = MutableLiveData()
 
         var provinceAPI: ProvinceApi = RetrofitClient().getRetrofitClient()!!.create()
         var call: Call<ProvinceResponseModel> = provinceAPI.getProvinces()
@@ -21,7 +21,7 @@ class ProvinceRepo () {
                 Log.d("Province", "response=$response")
                 Log.d("DATA", Gson().toJson(response.body()))
 
-                result.value = response.body()
+                result.value = response.body()?.getData()?.toList()
             }
 
             override fun onFailure(call : Call<ProvinceResponseModel>, t: Throwable) {

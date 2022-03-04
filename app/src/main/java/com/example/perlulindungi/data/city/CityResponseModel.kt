@@ -12,8 +12,8 @@ class CityResponseModel(
     @SerializedName("message")
     private var message: String,
 
-    @SerializedName("data")
-    private var data: CityModel,
+    @SerializedName("results")
+    private var data: Array<CityModel>,
 ) {
     fun getCode() : Int {
         return code
@@ -27,7 +27,7 @@ class CityResponseModel(
         return success
     }
 
-    fun getData() : CityModel {
+    fun getData() : Array<CityModel> {
         return data
     }
 }

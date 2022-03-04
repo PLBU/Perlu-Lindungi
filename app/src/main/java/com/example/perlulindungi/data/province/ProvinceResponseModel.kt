@@ -12,8 +12,8 @@ class ProvinceResponseModel (
     @SerializedName("message")
      private var message: String,
 
-    @SerializedName("data")
-     private var data:ProvinceModel,
+    @SerializedName("results")
+     private var data: Array<ProvinceModel>,
 ) {
     fun getCode() : Int {
         return code
@@ -27,7 +27,7 @@ class ProvinceResponseModel (
         return success
     }
 
-    fun getData() : ProvinceModel {
+    fun getData() : Array<ProvinceModel> {
         return data
     }
 }
