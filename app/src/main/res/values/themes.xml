@@ -13,6 +13,7 @@
 
     <!-- Text Styles -->
     <style name="text_heading_1">
+        <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/oxygen</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textFontWeight">700</item>
@@ -35,6 +36,13 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textFontWeight">700</item>
         <item name="android:lineHeight">18dp</item>
+    </style>
+    <style name="text_small">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:lineHeight">13.5dp</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
 
     <!--  Splash Screen  -->
