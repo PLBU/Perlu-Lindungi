@@ -10,12 +10,16 @@ import retrofit2.Response
 import retrofit2.create
 
 class FaskesRepo(
-    private val province: String = "",
-    private val city: String = ""
+    private val province: String = "JAWA BARAT",
+    private val city: String = "KOTA BANDUNG"
 ) {
 
-    fun getFaskes(): MutableLiveData<FaskesResponseModel>{
-        var result: MutableLiveData<FaskesResponseModel> = MutableLiveData()
+    fun getFaskes(): MutableLiveData<List<FaskesModel>>{
+//        println("PROVINCE")
+//        println(province)
+//        println("CITY")
+//        println(city)
+        var result: MutableLiveData<List<FaskesModel>> = MutableLiveData()
 
         var faskesAPI: FaskesApi = RetrofitClient().getRetrofitClient()!!.create()
         var call: Call<FaskesResponseModel> = faskesAPI.getFaskes(province, city)
@@ -25,7 +29,7 @@ class FaskesRepo(
                 Log.d("FASKES", "response=$response")
                 Log.d("DATA", Gson().toJson(response.body()))
 
-                result.value = response.body()
+                result.value = response.body()?.getData()?.toList()
             }
 
             override fun onFailure(call : Call<FaskesResponseModel>, t: Throwable) {

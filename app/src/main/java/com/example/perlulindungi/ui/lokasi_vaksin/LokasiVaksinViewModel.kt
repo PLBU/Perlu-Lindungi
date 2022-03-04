@@ -7,25 +7,14 @@ import com.example.perlulindungi.data.faskes.FaskesModel
 import com.example.perlulindungi.data.faskes.FaskesRepo
 
 class LokasiVaksinViewModel : ViewModel() {
-    private val _faskes = MutableLiveData<Array<FaskesModel>>().apply {
-        value = emptyArray()
-    }
+    var faskes: LiveData<List<FaskesModel>>? = null
+    private var faskesRepo = FaskesRepo("JAWA BARAT", "KOTA BANDUNG");
 
-    private val _province = MutableLiveData<String>().apply {
-        value = ""
-    }
-
-    private val _city = MutableLiveData<String>().apply {
-        value = ""
-    }
-
-    val faskes: LiveData<Array<FaskesModel>> = _faskes
-    val province: LiveData<String> = _province
-    val city: LiveData<String> = _city
-
-    public fun getFaskes() {
-        val faskesRepo = FaskesRepo(province.value?:"", city.value?:"");
+    fun getFaskes() {
         val res = faskesRepo.getFaskes()
-        _faskes.apply { value = res.value?.getData() }
+        println("GET FASKES VIEW MODEL")
+        println(res)
+        println(res.value)
+        faskes = res
     }
 }

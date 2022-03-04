@@ -33,4 +33,16 @@ class FaskesModel (
     fun getKode() : String {
         return kode
     }
+
+    fun getStatus() : String {
+        return status
+    }
+
+    fun getLat() : String {
+        return latitude
+    }
+
+    fun getLong() : String {
+        return longitude
+    }
 }

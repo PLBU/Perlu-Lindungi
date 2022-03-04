@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/faskesDesc"
+        android:id="@+id/faskesAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -46,10 +46,10 @@
         android:text="TextView"
         android:padding="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faskesDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/faskesAddress" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/faskesCode"
         android:layout_width="0dp"
         android:padding="4dp"
         android:layout_height="wrap_content"
@@ -57,5 +57,5 @@
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/faskesPhone"
-        app:layout_constraintTop_toBottomOf="@+id/faskesDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/faskesAddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>
