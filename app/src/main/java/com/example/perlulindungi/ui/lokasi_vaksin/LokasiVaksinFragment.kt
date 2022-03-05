@@ -1,7 +1,9 @@
 package com.example.perlulindungi.ui.lokasi_vaksin
 
 import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.perlulindungi.MainActivity
 import com.example.perlulindungi.data.province.ProvinceModel
 import com.example.perlulindungi.databinding.FragmentLokasiVaksinBinding
 
@@ -19,8 +22,6 @@ class LokasiVaksinFragment : Fragment() {
     private var _binding: FragmentLokasiVaksinBinding? = null
     private var _lokasiVaksinAdapter: LokasiVaksinAdapter? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private val lokasiVaksinAdapter get() = _lokasiVaksinAdapter!!
 
@@ -110,12 +111,33 @@ class LokasiVaksinFragment : Fragment() {
                 val city_pos = binding.spinnerPilihKota.selectedItemPosition;
                 var city = lokasiVaksinViewModel?.cities?.value?.get(city_pos)
 
+                val location : Location = (activity as MainActivity).getLocation()
+                val userLat = location.latitude
+                val userLng = location.longitude
+
+                Log.d("USER POSITION", userLat.toString() + "," + userLng.toString());
+
                 lokasiVaksinViewModel.getFaskes(province?.getValue(), city?.getValue())
                 lokasiVaksinViewModel.faskes?.observe(viewLifecycleOwner) {
                     println("FASKES UPDATED - IT")
                     println(it);
-                    if (it != null) {
-                        lokasiVaksinAdapter.setLokasiVaksinList(it.toList())
+
+                    val rows = it.toList().sortedWith(Comparator { first, second ->
+                        val dist1 = getDistance(first.getLat(), first.getLong(),userLat, userLng)
+                        val dist2 = getDistance(second.getLat(), second.getLong(), userLat, userLng)
+                        if(dist1 != dist2) {
+                            if (dist1 > dist2) {
+                                1
+                            } else {
+                                -1
+                            }
+                        } else {
+                            first.getNama().compareTo(second.getNama())
+                        }
+                    })
+
+                    if (rows != null) {
+                        lokasiVaksinAdapter.setLokasiVaksinList(rows.take(5))
                         lokasiVaksinAdapter.notifyDataSetChanged()
                     }
                 }
@@ -128,5 +150,26 @@ class LokasiVaksinFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val theta = lon1 - lon2
+        var dist = (Math.sin(deg2rad(lat1))
+                * Math.sin(deg2rad(lat2))
+                + (Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2))
+                * Math.cos(deg2rad(theta))))
+        dist = Math.acos(dist)
+        dist = rad2deg(dist)
+        dist = dist * 60 * 1.1515
+        return dist
+    }
+
+    private fun deg2rad(deg: Double): Double {
+        return deg * Math.PI / 180.0
+    }
+
+    private fun rad2deg(rad: Double): Double {
+        return rad * 180.0 / Math.PI
     }
 }
