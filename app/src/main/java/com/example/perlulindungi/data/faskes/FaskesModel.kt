@@ -7,8 +7,8 @@ class FaskesModel (
     private var kota: String,
     private var provinsi: String,
     private var alamat: String,
-    private var latitude: String,
-    private var longitude: String,
+    private var latitude: Double,
+    private var longitude: Double,
     private var telp: String,
     private var jenis_faskes: String,
     private var kelas_rs: String,
@@ -38,11 +38,11 @@ class FaskesModel (
         return status
     }
 
-    fun getLat() : String {
+    fun getLat() : Double {
         return latitude
     }
 
-    fun getLong() : String {
+    fun getLong() : Double {
         return longitude
     }
 
