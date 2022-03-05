@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.perlulindungi.R
 import com.example.perlulindungi.data.faskes.FaskesModel
@@ -37,12 +38,12 @@ class LokasiVaksinDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         faskesData = Gson().fromJson(arguments?.getString("faskes_data"), FaskesModel::class.java)
-        name = arguments?.getString("name")!!
-        code = arguments?.getString("code")!!
-        type = arguments?.getString("type")!!
-        address = arguments?.getString("address")!!
-        phone = arguments?.getString("phone")!!
-        status = arguments?.getString("status")!!
+        name = faskesData.getNama()
+        code = faskesData.getKode()
+        type = faskesData.getJenis()
+        address = faskesData.getAlamat()
+        phone = faskesData.getTelp()
+        status = faskesData.getStatus()
         url = arguments?.getString("url")!!
     }
 
@@ -94,8 +95,17 @@ class LokasiVaksinDetailFragment : Fragment() {
 
         bookmartBtn.setOnClickListener {
             val bookmarkRepo = BookmarkRepo(requireContext())
-            bookmarkRepo.insertBookmark(faskesData)
-            Log.d("INSERT", "BOOKMARK")
+            var toastText = ""
+
+            if (bookmarkRepo.isBookmark(faskesData)) {
+                bookmarkRepo.deleteBookmark(faskesData)
+                toastText = "Bookmark faskes dihapus!"
+            } else {
+                bookmarkRepo.insertBookmark(faskesData)
+                toastText = "Berhasil bookmark faskes!"
+            }
+
+            Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()
         }
 
         return binding.root
