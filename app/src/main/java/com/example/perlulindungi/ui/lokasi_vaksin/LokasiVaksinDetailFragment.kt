@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,6 @@ import com.example.perlulindungi.data.faskes.FaskesModel
 import com.example.perlulindungi.data.faskes.bookmark.BookmarkRepo
 import com.example.perlulindungi.databinding.FragmentLokasiVaksinDetailBinding
 import com.google.gson.Gson
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.util.*
 
 class LokasiVaksinDetailFragment : Fragment() {
@@ -82,7 +77,10 @@ class LokasiVaksinDetailFragment : Fragment() {
             "" -> bg = bg
             else -> bg = Color.RED
         }
-       faskesType.setBackgroundColor(bg);
+        faskesType.setBackgroundColor(bg);
+
+        val bookmarkRepo = BookmarkRepo(requireContext())
+        binding.btnBookmarkText.text = if (bookmarkRepo.isBookmark(faskesData)) "- Bookmark" else "+ Bookmark"
 
         mapsBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
@@ -100,9 +98,11 @@ class LokasiVaksinDetailFragment : Fragment() {
             if (bookmarkRepo.isBookmark(faskesData)) {
                 bookmarkRepo.deleteBookmark(faskesData)
                 toastText = "Bookmark faskes dihapus!"
+                binding.btnBookmarkText.text = "+ Bookmark"
             } else {
                 bookmarkRepo.insertBookmark(faskesData)
                 toastText = "Berhasil bookmark faskes!"
+                binding.btnBookmarkText.text = "- Bookmark"
             }
 
             Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()

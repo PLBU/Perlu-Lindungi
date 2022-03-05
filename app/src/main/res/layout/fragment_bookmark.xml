@@ -8,11 +8,10 @@
 
     <TextView
         android:id="@+id/faskes_bookmark"
+        style="@style/text_heading_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_marginStart="15dp"
         android:text="@string/bookmark_heading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
