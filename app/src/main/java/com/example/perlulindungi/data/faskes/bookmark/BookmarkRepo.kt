@@ -62,4 +62,12 @@ class BookmarkRepo(context: Context) {
 
         bookmarkDao.deleteBookmark(convertFaskesToBookmark(faskesModel))
     }
+
+    fun isBookmark(faskesModel: FaskesModel): Boolean {
+        val bookmarkDao = db.bookmarkDao()
+
+        val bookmarkList: List<Bookmark> = bookmarkDao.getAll().filter { bookmark -> faskesModel.id == bookmark.id }
+
+        return bookmarkList.isNotEmpty()
+    }
 }

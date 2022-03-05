@@ -66,12 +66,6 @@ class LokasiVaksinAdapter :
             url += "," + faskesData.getLong()
 
             val bundle = Bundle()
-            bundle.putString("name", faskesData.getNama())
-            bundle.putString("code", faskesData.getKode())
-            bundle.putString("type", faskesData.getJenis())
-            bundle.putString("address", faskesData.getAlamat())
-            bundle.putString("phone", faskesData.getTelp())
-            bundle.putString("status", faskesData.getStatus())
             bundle.putString("url", url)
             bundle.putString("faskes_data", Gson().toJson(faskesData))
 
