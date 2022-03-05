@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/activity_main.xml" value="0.2786458333333333" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/activity_scan.xml" value="0.2786458333333333" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/comp_faskes_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/comp_news_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/fragment_bookmark.xml" value="0.1524822695035461" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/fragment_lokasi_vaksin.xml" value="0.2786458333333333" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/fragment_lokasi_vaksin_card.xml" value="0.33" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/fragment_lokasi_vaksin_detail.xml" value="0.33" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/fragment_news.xml" value="0.1648148148148148" />
+        <entry key="..\:/ITB/Sem 6/PBD/TUBES/Perlu-Lindungi/app/src/main/res/layout/fragment_news_web_view.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1485" />
         <entry key="app/src/main/res/drawable/bg_splash_screen.xml" value="0.1485" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1485" />
