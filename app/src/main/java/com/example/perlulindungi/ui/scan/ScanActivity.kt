@@ -90,7 +90,7 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
             Log.d("TEMPERATURE SENSOR", "NOT AVAILABLE")
 
             scanBinding.scanTemp.text = "N/A"
-        }
+        } else Log.d("TEMPERATURE SENSOR", "AVAILABLE")
     }
 
     override fun onResume() {
@@ -183,6 +183,7 @@ class ScanActivity : AppCompatActivity(), LocationListener, SensorEventListener 
 
         Log.d("TEMPERATURE", temperature.toString())
 
-        scanBinding.scanTemp.text = "$temperature°C"
+        val tempString = String.format("%.1f", temperature)
+        scanBinding.scanTemp.text = "$tempString°C"
     }
 }
