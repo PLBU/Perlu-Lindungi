@@ -6,7 +6,7 @@ import androidx.room.Room
 import com.example.perlulindungi.data.faskes.FaskesModel
 
 class BookmarkRepo(context: Context) {
-    private val db = Room.databaseBuilder(context, BookmarkDatabase::class.java, "Bookmark").allowMainThreadQueries().build()
+    private val db = Room.databaseBuilder(context, BookmarkDatabase::class.java, "Bookmark").fallbackToDestructiveMigration().allowMainThreadQueries().build()
 
     fun convertFaskesToBookmark(faskesModel: FaskesModel) : Bookmark {
         return Bookmark(
