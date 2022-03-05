@@ -10,8 +10,8 @@ import retrofit2.Response
 import retrofit2.create
 
 class FaskesRepo(
-    private var province: String = "JAWA BARAT",
-    private var city: String = "KOTA BANDUNG"
+    private var province: String = "ACEH",
+    private var city: String = "KAB. ACEH TIMUR"
 ) {
 
     fun getFaskes(_province: String?, _city: String?): MutableLiveData<List<FaskesModel>>{

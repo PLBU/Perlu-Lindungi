@@ -14,7 +14,7 @@ class LokasiVaksinViewModel : ViewModel() {
     var provinces: LiveData<List<ProvinceModel>>? = null
     var cities: LiveData<List<CityModel>>? = null
 
-    private var faskesRepo = FaskesRepo("JAWA BARAT", "KOTA BANDUNG");
+    private var faskesRepo = FaskesRepo("ACEH", "KAB. ACEH TIMUR");
     private var provinceRepo = ProvinceRepo();
     private var cityRepo = CityRepo();
 

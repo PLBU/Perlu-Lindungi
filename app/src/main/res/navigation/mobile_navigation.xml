@@ -29,4 +29,10 @@
         android:name="com.example.perlulindungi.ui.lokasi_vaksin.LokasiVaksinFragment"
         android:label="@string/title_lokasi_vaksin"
         tools:layout="@layout/fragment_lokasi_vaksin" />
+
+    <fragment
+        android:id="@+id/navigation_lokasi_vaksin_detail"
+        android:name="com.example.perlulindungi.ui.lokasi_vaksin.LokasiVaksinDetailFragment"
+        android:label="@string/title_lokasi_vaksin_detail"
+        tools:layout="@layout/fragment_lokasi_vaksin_detail" />
 </navigation>

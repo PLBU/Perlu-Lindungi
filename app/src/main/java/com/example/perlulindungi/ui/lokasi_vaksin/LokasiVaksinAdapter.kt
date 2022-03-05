@@ -1,9 +1,14 @@
 package com.example.perlulindungi.ui.lokasi_vaksin
 
+import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.perlulindungi.R
 import com.example.perlulindungi.data.faskes.FaskesModel
@@ -13,6 +18,7 @@ class LokasiVaksinAdapter :
     private var faskesList: List<FaskesModel>? = null
 
     class LokasiVaksinViewHolder(faskesRow : View): RecyclerView.ViewHolder(faskesRow) {
+        val faskesRow = faskesRow.findViewById<ConstraintLayout>(R.id.faskesRow)
         val faskesName = faskesRow.findViewById<TextView>(R.id.faskesName)
         val faskesType = faskesRow.findViewById<TextView>(R.id.faskesType)
         val faskesAddress = faskesRow.findViewById<TextView>(R.id.faskesAddress)
@@ -41,6 +47,35 @@ class LokasiVaksinAdapter :
         holder.faskesAddress.text = faskesData.getAlamat()
         holder.faskesPhone.text = faskesData.getTelp()
         holder.faskesCode.text = faskesData.getKode()
+
+        var bg = Color.TRANSPARENT;
+        when(faskesData.getJenis()) {
+            "PUSKESMAS" -> bg = Color.parseColor("#EF5DA8")
+            "RUMAH SAKIT" -> bg = Color.parseColor("#5D5FEF")
+            "KLINIK" -> bg = Color.parseColor("#7879F1")
+            "KKP" -> bg = Color.parseColor("#41A7F6")
+            "" -> bg = bg
+            else -> bg = Color.RED
+        }
+        holder.faskesType.setBackgroundColor(bg);
+
+        holder.faskesRow.setOnClickListener {
+            var url = "https://maps.google.com/?q="
+            url += faskesData.getLat()
+            url += "," + faskesData.getLong()
+
+            val bundle = Bundle()
+            bundle.putString("name", faskesData.getNama())
+            bundle.putString("code", faskesData.getKode())
+            bundle.putString("type", faskesData.getJenis())
+            bundle.putString("address", faskesData.getAlamat())
+            bundle.putString("phone", faskesData.getTelp())
+            bundle.putString("status", faskesData.getStatus())
+            bundle.putString("url", url)
+
+            holder.itemView.findNavController()
+                .navigate(R.id.navigation_lokasi_vaksin_detail, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
