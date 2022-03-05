@@ -50,26 +50,26 @@ Aplikasi dapat melakukan scan QRCode dengan menggunakan library ZXing-android-em
 - ZXing-android-embedded untuk scan barcode dan QR code
 
 ## Screenshot
-Splashscreen
+### Splashscreen
 ![ss](/screenshots/1-splashscreen.png "Splashscreen")
-Berita COVID-19
+### Berita COVID-19
 ![ss](/screenshots/2-news.png "Splashscreen")
-Webview Berita
+### Webview Berita
 ![ss](/screenshots/3-news-web-view.png "Splashscreen")
-Daftar Lokasi Vaksin
+### Daftar Lokasi Vaksin
 ![ss](/screenshots/4-lokasi-vaksin.png "Splashscreen")
-Detail Lokasi Vaksin
-![ss](/screenshots/5-lokasi-vaksin-detail.png "Splashscreen")
+### Detail Lokasi Vaksin
+### ![ss](/screenshots/5-lokasi-vaksin-detail.png "Splashscreen")
 ![ss](/screenshots/6-bookmark-faskes.png "Splashscreen")
-Scan QRCode Default
+### Scan QRCode Default
 ![ss](/screenshots/7-scan-default.jpg "Splashscreen")
-Scan QRCode Green
+### Scan QRCode Green
 ![ss](/screenshots/7-scan-berhasil-green.jpg "Splashscreen")
-Scan QRCode Yellow
+### Scan QRCode Yellow
 ![ss](/screenshots/7-scan-berhasil-yellow.jpg "Splashscreen")
-Scan QRCode Red
+### Scan QRCode Red
 ![ss](/screenshots/7-scan-gagal-red.jpg "Splashscreen")
-Scan QRCode Black
+### Scan QRCode Black
 ![ss](/screenshots/7-scan-gagal-black.jpg "Splashscreen")
 
 ## Pembagian kerja anggota kelompok.
