@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.perlulindungi.R
 import com.example.perlulindungi.data.faskes.FaskesModel
+import com.google.gson.Gson
 
 class LokasiVaksinAdapter :
     RecyclerView.Adapter<LokasiVaksinAdapter.LokasiVaksinViewHolder>() {
@@ -72,6 +73,7 @@ class LokasiVaksinAdapter :
             bundle.putString("phone", faskesData.getTelp())
             bundle.putString("status", faskesData.getStatus())
             bundle.putString("url", url)
+            bundle.putString("faskes_data", Gson().toJson(faskesData))
 
             holder.itemView.findNavController()
                 .navigate(R.id.navigation_lokasi_vaksin_detail, bundle)

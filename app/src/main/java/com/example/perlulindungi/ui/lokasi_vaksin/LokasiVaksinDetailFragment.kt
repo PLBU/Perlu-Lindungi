@@ -4,15 +4,24 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.perlulindungi.R
+import com.example.perlulindungi.data.faskes.FaskesModel
+import com.example.perlulindungi.data.faskes.bookmark.BookmarkRepo
 import com.example.perlulindungi.databinding.FragmentLokasiVaksinDetailBinding
+import com.google.gson.Gson
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 class LokasiVaksinDetailFragment : Fragment() {
+    private lateinit var faskesData: FaskesModel
     private var name: String = "";
     private var code: String = "";
     private var type: String = "";
@@ -27,6 +36,7 @@ class LokasiVaksinDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        faskesData = Gson().fromJson(arguments?.getString("faskes_data"), FaskesModel::class.java)
         name = arguments?.getString("name")!!
         code = arguments?.getString("code")!!
         type = arguments?.getString("type")!!
@@ -81,6 +91,12 @@ class LokasiVaksinDetailFragment : Fragment() {
                 startActivity(mapIntent)
             }
         })
+
+        bookmartBtn.setOnClickListener {
+            val bookmarkRepo = BookmarkRepo(requireContext())
+            bookmarkRepo.insertBookmark(faskesData)
+            Log.d("INSERT", "BOOKMARK")
+        }
 
         return binding.root
     }
