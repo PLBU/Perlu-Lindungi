@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="30dp">
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
+        android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,11 +34,11 @@
         android:id="@+id/scan_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="@id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_qrcode_filled"
         android:contentDescription="@string/scan_btn_desc"
-        android:layout_marginBottom="72dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/blue"
         app:tint="@null"/>

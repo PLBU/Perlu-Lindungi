@@ -7,7 +7,6 @@
     tools:context=".ui.news.NewsFragment">
 
     <TextView
-        android:paddingTop="40dp"
         android:id="@+id/textView"
         style="@style/text_heading_1"
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingBottom="96dp"
+        android:paddingBottom="40dp"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
