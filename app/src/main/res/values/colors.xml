@@ -10,7 +10,8 @@
     <color name="yellow">#FFFFCB14</color>
     <color name="black">#FF000000</color>
     <color name="gray">#FF555555</color>
-    <color name="gray_2">#FFC4C4C4</color>
-    <color name="gray_3">#FFF6F6F6</color>
+    <color name="gray_2">#FFC9C7D2</color>
+    <color name="gray_3">#FFC4C4C4</color>
+    <color name="gray_4">#FFF6F6F6</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

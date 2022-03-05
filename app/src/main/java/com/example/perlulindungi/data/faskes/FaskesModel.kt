@@ -1,7 +1,7 @@
 package com.example.perlulindungi.data.faskes
 
 class FaskesModel (
-    var id: Number,
+    var id: Int,
     private var kode: String,
     private var nama: String,
     private var kota: String,
@@ -44,5 +44,17 @@ class FaskesModel (
 
     fun getLong() : Double {
         return longitude
+    }
+
+    fun getKota() : String {
+        return kota
+    }
+
+    fun getProvinsi() : String {
+        return provinsi
+    }
+
+    fun getKelas() : String {
+        return kelas_rs
     }
 }
