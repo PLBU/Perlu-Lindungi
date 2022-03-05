@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    android:paddingVertical="40dp"
+    android:paddingHorizontal="18dp"
     tools:context=".ui.lokasi_vaksin.LokasiVaksinFragment">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Cari Faskes"
-        android:textSize="20sp"
+        style="@style/text_heading_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +34,7 @@
         android:text="Pilih Provinsi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_titleCariVaksin" />
 
     <TextView
@@ -52,16 +54,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_pilihKota" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_search"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/iris_100"
+        android:textColor="@color/white"
         android:text="Search"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_pilihKota" />
+
+    <View
+        android:id="@+id/divider"
+        app:layout_constraintBottom_toTopOf="@id/rv_lokasiVaksin"
+        android:layout_marginVertical="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_search"
+        tools:layout_editor_absoluteX="18dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lokasiVaksin"
@@ -69,9 +82,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_search">
+        app:layout_constraintTop_toBottomOf="@+id/divider">
 
     </androidx.recyclerview.widget.RecyclerView>
 

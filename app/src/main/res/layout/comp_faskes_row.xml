@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    android:clickable="true"
+    android:focusable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/faskesRow"
-    android:padding="20dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    android:layout_marginHorizontal="1dp"
+    app:cardCornerRadius="20dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/faskesRow"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/faskesName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:padding="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/faskesType"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/faskesName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/faskesType"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/faskesType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:paddingVertical="4dp"
-        android:paddingHorizontal="10dp"
-        android:background="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/faskesType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="10dp"
+            android:background="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/faskesAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:padding="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faskesName" />
+        <TextView
+            android:id="@+id/faskesAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/faskesName" />
 
-    <TextView
-        android:id="@+id/faskesPhone"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:padding="4dp"
-        android:textColor="@color/blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faskesAddress" />
+        <TextView
+            android:id="@+id/faskesPhone"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:padding="4dp"
+            android:textColor="@color/blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/faskesAddress" />
 
-    <TextView
-        android:id="@+id/faskesCode"
-        android:layout_width="0dp"
-        android:padding="4dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/faskesPhone"
-        app:layout_constraintTop_toBottomOf="@+id/faskesAddress" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/faskesCode"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/faskesPhone"
+            app:layout_constraintTop_toBottomOf="@+id/faskesAddress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
